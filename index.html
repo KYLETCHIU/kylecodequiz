@@ -1,45 +1,35 @@
-!<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-
-     <title>Tron Quiz</title>
-     <link rel="stylesheet" href="assets/css/reset.css" />
-     <link rel="stylesheet" href="assets/css/style.css">
-     <script src="assets/JavaScript/script.js"></script>
-     <link rel="preconnect" href="https://fonts.googleapis.com"> 
+<head>
+    <title>TRON Quiz App</title>
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
      <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
-    </head>
+</head>
 
-    <body>
-    
-        <div class='gridbox'>
+<body>
 
-         <div id='tronquiz'>
-            
-             <h1>Tron Quiz</h1>
-
-                <p id='questions'></p>
-
-                <div class='buttons'>
-                <button id='btn0'><span id='choice0'></span></button>
-                <button id='btn1'><span id='choice1'></span></button>
-                <button id='btn2'><span id='choice2'></span></button>
-                <button id='btn3'><span id='choice3'></span></button>
-                </div>
-
-                <footer>
-                <p id='progress'> Question x of y</p>
-                </footer>
-
-            </div>
-
+    <div class="container">
+        
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
         </div>
 
-        
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
 
-    </body>
+    </div>
 
-</html>
+</body>
+
+</html> 
