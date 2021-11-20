@@ -1,61 +1,59 @@
-body{
-    background-color: black;
-}
-
-.gridbox{
-    width: 600px;
-    height: 500px;
-    margin: 0 auto;
-    background-color: black;
-    padding: 10px 50px 50px 50px;
-    border: 2px solid black;
-}
-
-.gridbox h1{
+*,*::before, *::after {
+    box-sizing: border-box;
     font-family: 'Orbitron', sans-serif;
+    color: #7dfdfe;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width:100vw;
     background-color: black;
-    font: 60px;
-    text-align: center;
-    color: #7DFDFE;
-    padding: 2px 0px;
 }
 
-#score{
-    color: #7DFDFE;
-    text-align: center;
-    font-size: 30px;
+.container{
+    width: 800px;
+    max-width: 80%;
+    background-color: black;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px #7dfdfe;
 }
 
-.gridbox #question{
-    font-family: 'Orbitron', sans-serif;
-    font-size: 30px;
-    color: #7DFDFE;
+.btn-grid{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap: 10px;
+    margin: 20px 0;
 }
 
-.buttons {
-    margin-top: 30px;
+.btn {
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-shadow: 0 0 10px 2px #7dfdfe;
 }
 
-#btn0, #btn1, #btn2, #btn3{
-    background-color: #7DFDFE;
-    width: 250px;
-    font-size: 20px;
-    color: white;
-    border: 1px solid #7DFDFE;
-    margin: 10px 40px 10px 0px;
-    padding: 10px 10px;
+.btn:hover{
+    border-color:#F2A007;
+    color: #F2A007;
 }
 
-#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover{
-    cursor: pointer;
-    background-color: white;
+.start-btn, .next-btn {
+    font-size: 1.5rem;
+    padding: 10px 20px;
 }
 
-#btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
-    outline: 0;
+.controls{
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#progress{
-    color: #7DFDFE;
-    font-size: 18px;
+.hide{
+    display: none;
 }
