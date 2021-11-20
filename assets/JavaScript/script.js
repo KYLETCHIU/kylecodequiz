@@ -1,73 +1,129 @@
-function TronQuiz (questions){
-    this.score = 0;
-    this.questions =questions;
-    this.questionIndex = 0;
+const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
+const questionContainerElement = document.getElementById('question-container')
+const questionElement = document.getElementById('question')
+const answerButtonsElement = document.getElementById('answer-buttons')
+
+let shuffledQuestions, currentQuestionIndex
+
+startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++
+  setNextQuestion()
+})
+
+function startGame() {
+  startButton.classList.add('hide')
+  shuffledQuestions = questions.sort(() => Math.random() - .5)
+  currentQuestionIndex = 0
+  questionContainerElement.classList.remove('hide')
+  setNextQuestion()
 }
-//
 
-TronQuiz.prototype.getQuestionIndex = function() {
-    return this.questions[this.questionIndex];
+function setNextQuestion() {
+  resetState()
+  showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
-TronQuiz.prototype.guess = function(answer){
-    if(this.getQuestionIndex().isCorrectAnswer(answer)){
-
+function showQuestion(question) {
+  questionElement.innerText = question.question
+  question.answers.forEach(answer => {
+    const button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('btn')
+    if (answer.correct) {
+      button.dataset.correct = answer.correct
     }
-    this.questionIndex++;
+    button.addEventListener('click', selectAnswer)
+    answerButtonsElement.appendChild(button)
+  })
 }
 
-TronQuiz.prototype.isEnded = function (){
-    return this.questionIndex === this.questions.length;
-}
-function Questions (text, choices, answer){
-    this.text = text;
-    this.choices = choices;
-    this.answer = answer;
-}
-
-Questions.prototype.isCorrectAnswer = function (choice){
-    return this.answer === choice;
+function resetState() {
+  clearStatusClass(document.body)
+  nextButton.classList.add('hide')
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  }
 }
 
-function populate(){
-    if(TronQuiz.isEnded()){
-        showScores();
+function selectAnswer(e) {
+  const selectedButton = e.target
+  const correct = selectedButton.dataset.correct
+  setStatusClass(document.body, correct)
+  Array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct)
+  })
+  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    nextButton.classList.remove('hide')
+  } else {
+    startButton.innerText = 'Restart'
+    startButton.classList.remove('hide')
+  }
+}
+
+function setStatusClass(element, correct) {
+  clearStatusClass(element)
+  if (correct) {
+    element.classList.add('correct')
+  } else {
+    element.classList.add('wrong')
+  }
+}
+
+function clearStatusClass(element) {
+  element.classList.remove('correct')
+  element.classList.remove('wrong')
+}
+
+const questions = [
+    {
+        question: "When was TRON originally released?",
+        answers:[
+            {text: "1982", correct: true},
+            {text: "1981", correct: false},
+            {text:"1983", correct: false},
+            {text: "1984", correct:false}
+        ]
+    },
+
+    {
+        question: "What scifi event in TRON actually happened to Jeff Bridges while filming TRON:Legacy?",
+        answers:[
+            {text: "Partook in motorcycle combat", correct: false},
+            {text: "Got scanned by computer laser", correct: true},
+            {text:"Worked with AI", correct: false},
+            {text: "Created digital assistant", correct:false}
+        ]
+    },
+
+    {
+        question: "Who did the score of Tron:Legacy, and had a cameo?",
+        answers:[
+            {text: "Marshmello", correct: false},
+            {text: "Skrillex", correct: false},
+            {text:"Daft Punk", correct: true},
+            {text: "DeadMau5", correct:false}
+        ]
+    },
+
+    {
+        question: "TRON was a commercial failure. What used its license and out-grossed the film?",
+        answers:[
+            {text: "Soundtrack", correct: false},
+            {text: "Merchandise", correct: false},
+            {text:"TV Show", correct: false},
+            {text: "Arcade game", correct:true}
+        ]
+    },
+
+    {
+        question: "What character from TRON goes by the name Rinzler in TRON:Legacy?",
+        answers:[
+            {text: "TRON", correct: true},
+            {text: "Master Control", correct: false},
+            {text:"Sark", correct: false},
+            {text: "Yori", correct:false}
+        ]
     }
-    else{
-        var element = document.getElementById('questions');
-        element.innerHTML = TronQuiz.getQuestionIndex().text;
-
-        var choices = TronQuiz.getQuestionIndex().choices;
-        for(var i = 0; i < choices.length; i++){
-            var element = document.getElementById('choice' + i);
-            element.innerHTML = choices[i];
-            guess('btn' + i, choices [i]);
-        }
-        showProgress();
-    }
-};
-
-function showProgress() {
-    var currentQuestionNumber = quiz.questionIndex + 1;
-    var element = document.getElementById("progress");
-    element.innerHTML = "Questions " + currentQuestionNumber + " of " + quiz.questions.length;
-};
-
-function showScores() {
-    var gameOverHTML = "<h1>Result</h1>";
-    gameOverHTML += "<h2 id='score'> Your scores: " + quiz.score + "</h2>";
-    var element = document.getElementById("quiz");
-    element.innerHTML = gameOverHTML;
-};
-
-var questions = [
-    new Question("What year did the original TRON come out?", ["1981", "1982","1983", "1984"], "1982"),
-    new Question("What real event happened to Jeff Bridges in 2009 that was still science fiction when the original movie was released?", ["Scanned by computer laser", "Had a motorcycle battle", "Has personal ID disk", "Met hologram AI"], "Scanned by computer laser"),
-    new Question("The budget for the original TRON was $13 million. How much did each custom suit cost for the racing scene?", ["$60", "$600","$6000", "$60,000"], "$60,000"),
-    new Question("Who did the score for Tron: Legacy and has a cameo in the film?", ["Marshmello", "Daft Punk", "DeadMau5", "Skrillex"], "Daft Punk"),
-    new Question("Which character from the original TRON appears as the character Rinzler?", ["Spark", "Yori", "Tron", "Master Control"], "TRON")
-];
-
-var quiz = new TronQuiz(questions);
-
-populate();
+]
