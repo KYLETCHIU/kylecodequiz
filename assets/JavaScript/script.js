@@ -1,3 +1,4 @@
+//All my variable
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
@@ -13,6 +14,8 @@ nextButton.addEventListener('click', () => {
   setNextQuestion()
 })
 
+//Starts the game
+
 function startGame() {
   startButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
@@ -21,6 +24,8 @@ function startGame() {
   setNextQuestion()
   startTimer()
 }
+
+//Timer function
 
 function startTimer(){
     var timerInterval = setInterval(function () {
@@ -41,6 +46,8 @@ function setNextQuestion() {
   resetState()
   showQuestion(shuffledQuestions[currentQuestionIndex])
 }
+
+//What happens when a question is right or wrong
 
 function showQuestion(question) {
   questionElement.innerText = question.question
@@ -69,6 +76,7 @@ function resetState() {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
   }
 }
+
 
 function selectAnswer(e) {
   const selectedButton = e.target
@@ -99,7 +107,7 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
-
+//Questions
 
 const questions = [
     {
