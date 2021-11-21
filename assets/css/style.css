@@ -15,6 +15,17 @@ body {
     background-color: black;
 }
 
+
+.correct {
+    color:#f2a007
+    box-shadow: 0 0 10px 2px #f2a007
+}
+
+.wrong {
+    color:#f2a007;
+    box-shadow: 0 0 10px 2px #F2A007;
+}
+
 .container{
     width: 800px;
     max-width: 80%;
@@ -36,6 +47,7 @@ body {
     border-radius: 5px;
     padding: 5px 10px;
     box-shadow: 0 0 10px 2px #7dfdfe;
+    outline: none;
 }
 
 .btn:hover{
@@ -46,14 +58,20 @@ body {
 .start-btn, .next-btn {
     font-size: 1.5rem;
     padding: 10px 20px;
+    outline: none;
 }
 
 .controls{
     display:flex;
     justify-content: center;
     align-items: center;
+    outline: none;
 }
 
 .hide{
     display: none;
+}
+
+.timecontainer{
+position: fixed;
 }

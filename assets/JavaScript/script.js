@@ -3,7 +3,8 @@ const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
-
+//const timeEl = document.getElementById('time')
+//var seconds=90
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
@@ -18,7 +19,24 @@ function startGame() {
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
+  //startTimer()
 }
+
+// function startTimer(){
+//     var timerInterval = setInterval(function () {
+//         seconds--;
+//         timeEl.textContent = seconds;
+//         if (secondsLeft === 0) {
+//           // Stops execution of action at set interval
+//           clearInterval(timerInterval);
+//           // Calls function to create and append image
+//           sendMessage();
+//         }
+    
+//     }, 1000);
+//}
+
+
 
 function setNextQuestion() {
   resetState()
@@ -32,8 +50,14 @@ function showQuestion(question) {
     button.innerText = answer.text
     button.classList.add('btn')
     if (answer.correct) {
+        button.classList.add('correct')
       button.dataset.correct = answer.correct
     }
+    else (answer.wrong) ;{
+        button.classList.add('incorrect')
+        button.dataset.wrong = answer.wrong
+    }
+
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
   })
@@ -76,54 +100,56 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
+
+
 const questions = [
     {
-        question: "When was TRON originally released?",
+        question: "What is the current version of HTML?",
         answers:[
-            {text: "1982", correct: true},
-            {text: "1981", correct: false},
-            {text:"1983", correct: false},
-            {text: "1984", correct:false}
+            {text: "HTML 5", correct: true },
+            {text: "HTML 4", correct: false },
+            {text:"HTML 3", correct: false },
+            {text: "HTML 2", correct:false }
         ]
     },
 
     {
-        question: "What scifi event in TRON actually happened to Jeff Bridges while filming TRON:Legacy?",
+        question: "What is the current version of CSS?",
         answers:[
-            {text: "Partook in motorcycle combat", correct: false},
-            {text: "Got scanned by computer laser", correct: true},
-            {text:"Worked with AI", correct: false},
-            {text: "Created digital assistant", correct:false}
+            {text: "CSS 2", correct: false},
+            {text: "CSS 3", correct: true},
+            {text:"CSS 4", correct: false},
+            {text: "CSS 5", correct:false}
         ]
     },
 
     {
-        question: "Who did the score of Tron:Legacy, and had a cameo?",
+        question: "What tag would you use to show a bulk body of text?",
         answers:[
-            {text: "Marshmello", correct: false},
-            {text: "Skrillex", correct: false},
-            {text:"Daft Punk", correct: true},
-            {text: "DeadMau5", correct:false}
+            {text: "<h1>", correct: false},
+            {text: "<main>", correct: false},
+            {text:"<p>", correct: true},
+            {text: "<script>", correct:false}
         ]
     },
 
     {
-        question: "TRON was a commercial failure. What used its license and out-grossed the film?",
+        question: "Who created Bootstrap?",
         answers:[
-            {text: "Soundtrack", correct: false},
-            {text: "Merchandise", correct: false},
-            {text:"TV Show", correct: false},
-            {text: "Arcade game", correct:true}
+            {text: "Myspace", correct: false},
+            {text: "Reddit", correct: false},
+            {text:"Facebook", correct: false},
+            {text: "Twitter", correct:true}
         ]
     },
 
     {
-        question: "What character from TRON goes by the name Rinzler in TRON:Legacy?",
+        question: "What type of file is used to add functionality to a web page?",
         answers:[
-            {text: "TRON", correct: true},
-            {text: "Master Control", correct: false},
-            {text:"Sark", correct: false},
-            {text: "Yori", correct:false}
+            {text: "script.js", correct: true},
+            {text: "index.html", correct: false},
+            {text:"style.css", correct: false},
+            {text: "audi.mp3", correct:false}
         ]
     }
 ]
