@@ -6,15 +6,26 @@
 
 body {
     padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0px auto;
+    align-items: center;  
     height: 100vh;
     width:100vw;
     background-color: black;
 }
+.head{
+    width: 100vw;
+    height: 30px;
+    display: flex;
 
+}
+#time{
+    display: flex;
+    padding-left: 90%;
+    height: 30px;
+    font-size: x-large;
+    margin-top: 5px;
+    
+}
 
 .correct {
     color:#f2a007
@@ -33,6 +44,8 @@ body {
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px 2px #7dfdfe;
+    margin:250px auto;
+
 }
 
 .btn-grid{

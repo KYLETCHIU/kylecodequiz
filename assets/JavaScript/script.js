@@ -3,8 +3,8 @@ const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
-//const timeEl = document.getElementById('time')
-//var seconds=90
+const timeEl = document.getElementById('time')
+var seconds=90
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
@@ -19,22 +19,21 @@ function startGame() {
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
-  //startTimer()
+  startTimer()
 }
 
-// function startTimer(){
-//     var timerInterval = setInterval(function () {
-//         seconds--;
-//         timeEl.textContent = seconds;
-//         if (secondsLeft === 0) {
-//           // Stops execution of action at set interval
-//           clearInterval(timerInterval);
-//           // Calls function to create and append image
-//           sendMessage();
-//         }
+function startTimer(){
+    var timerInterval = setInterval(function () {
+        seconds--;
+        timeEl.textContent = 't- ' + seconds;
+        if (seconds === 0) {
+          
+          clearInterval(timerInterval);
+          
+        }
     
-//     }, 1000);
-//}
+    }, 1000);
+}
 
 
 
